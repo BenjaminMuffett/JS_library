@@ -4,10 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ben's Reading Space</title>
-    <script src="book-object.js"></script>
+    <script async src="book-object.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <dialog id="bookDialog">
+        <form >
+            <div>
+                <label for="book_name">Book Name</label>
+                <input type="text" name="book_name" id="book_name" autofocus required>
+            </div>
+            <div>
+                <label for="author">Author</label>
+                <input type="text" name="author" id="author">
+            </div>
+            <div>
+                <label for="pages">Pages</label>
+                <input type="text" name="pages" id="pages">
+            </div>
+            <div>
+                <label for="read">Read</label>
+                <input type="text" name="read" id="read">
+            </div>
+            <div>
+                <button id="cancel" formmethod="dialog">Cancel</button>
+                <button id="confirmBtn">Confirm</button>
+            </div>
+        </form>
+    </dialog>
+    <output></output>
+
+    <button id="newBook">New Book</button>
     <div class="grid-container">
     </div>
 </body>

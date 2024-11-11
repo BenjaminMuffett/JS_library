@@ -2,9 +2,44 @@
     display: grid;
     grid: auto-flow 400px / repeat(3, 20%) ;
     gap: 25px;
+    margin-top: 15px;
+    margin-left: 15px;
 }
 
 .card {
     background-color: blueviolet;
     border: 1px solid black;
+}
+
+#newBook {
+    font-size: 20px;
+    padding: 6px;
+    border-radius: 10px;
+    border: black 2px solid;
+    color: white;
+    background-color: violet;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+#newBook:hover {
+    background-color: blueviolet;
+}
+
+#newBook:active {
+    box-shadow: 0 5px #666;
+    transform: translateY(2px);
+}
+
+form div {
+    padding: 5px;
+}
+
+form div input {
+    width: 95%;
+}
+
+::backdrop {
+    opacity: 0.75;
+    background-color: #666;
 }
