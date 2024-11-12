@@ -16,19 +16,31 @@
             </div>
             <div>
                 <label for="author">Author</label>
-                <input type="text" name="author" id="author">
+                <input type="text" name="author" id="author" required>
             </div>
             <div>
                 <label for="pages">Pages</label>
-                <input type="text" name="pages" id="pages">
+                <input type="number" name="pages" id="pages" required>
             </div>
             <div>
-                <label for="read">Read</label>
-                <input type="text" name="read" id="read">
+                <fieldset>
+                        <legend>Have you read this book?</legend>
+                    <div id="radioDiv">
+                     <div>
+                        <input type="radio" name="readStatus" id="read" value="read">
+                        <label for="read">Read</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="readStatus" id="notRead" value="notRead" checked>
+                        <label for="notRead">Not yet</label>
+                    </div>   
+                    </div>
+                    
+                </fieldset>
             </div>
             <div>
                 <button id="cancel" formmethod="dialog">Cancel</button>
-                <button id="confirmBtn">Confirm</button>
+                <button id="confirmBtn" type="submit">Confirm</button>
             </div>
         </form>
     </dialog>
@@ -39,3 +51,7 @@
     </div>
 </body>
 </html>
+
+
+<!-- <label for="read">Read</label>
+                <input type="text" name="read" id="read"> -->

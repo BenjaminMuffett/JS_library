@@ -17,11 +17,8 @@ const bookThree = new Book('Reasons to skip leg day', 'Redditor', 69, 'not read'
 function addBookToLibrary(title, author, pages, read) {
     // takes arguments, creates a book from those arguments, store new book object into an array.
     let createdBook = new Book(title, author, pages, read);
-    if (myLibrary.find(o => o.title == createdBook.title) == undefined) {
-        myLibrary.push(createdBook);
-        console.log('Book added to library.')
-    }
-    
+    myLibrary.push(createdBook);
+    console.log('Book added into library.');
 }
 
 // keep display logic separate from storage array logic 
@@ -30,16 +27,15 @@ function addBookToLibrary(title, author, pages, read) {
 // rather than for each in the array, just append the last entry 
 function displayBookToLibrary() {
     const container = document.querySelector('.grid-container');
-    myLibrary.forEach((book) => {
-        const entry = document.createElement('div');
-        entry.classList.add('card');
-        for (key in book) {
-            const text = document.createElement('p');
-            text.textContent = book[key];
-            entry.appendChild(text);
-        }
-        container.appendChild(entry);
-    })
+    const newDisplayBook = myLibrary[myLibrary.length -1];
+    const entry = document.createElement('div');
+    entry.classList.add('card');
+    for (key in newDisplayBook) {
+        const text = document.createElement('p');
+        text.textContent = newDisplayBook[key];
+        entry.appendChild(text);
+    }
+    container.appendChild(entry);
 }
 
 // link button to a dialog, get info, create book entry
@@ -47,6 +43,7 @@ function displayBookToLibrary() {
 const newBookButton = document.querySelector('#newBook');
 const bookDialog = document.querySelector('#bookDialog');
 const confirmButton = bookDialog.querySelector('#confirmBtn');
+const closeButton =bookDialog.querySelector('#cancel');
 const bookTitle = bookDialog.querySelector('#book_name');
 const bookAuthor = bookDialog.querySelector('#author');
 const bookPages = bookDialog.querySelector('#pages');
@@ -61,11 +58,14 @@ newBookButton.addEventListener("click", () => {
     bookDialog.showModal();
 });
 
-confirmButton.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (bookTitle.value != '') {
-        const userBook = addBookToLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.value);
-        displayBookToLibrary(userBook);
-        bookDialog.close();
-    }
+confirmButton.addEventListener("submit", event => {
+    event.preventDefault();
+    const userBook = addBookToLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.value);
+    displayBookToLibrary(userBook);
+    bookDialog.close();
+    console.log('Book added to your library.')
 });
+
+closeButton.addEventListener('click', () => {
+    bookDialog.close();
+})
