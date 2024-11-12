@@ -47,7 +47,7 @@ const closeButton =bookDialog.querySelector('#cancel');
 const bookTitle = bookDialog.querySelector('#book_name');
 const bookAuthor = bookDialog.querySelector('#author');
 const bookPages = bookDialog.querySelector('#pages');
-const bookRead = bookDialog.querySelector('#read');
+const bookRead = bookDialog.querySelector("input[name= readStatus]:checked").value;
 
 
 newBookButton.addEventListener("click", () => {
@@ -58,9 +58,10 @@ newBookButton.addEventListener("click", () => {
     bookDialog.showModal();
 });
 
-confirmButton.addEventListener("submit", event => {
+bookDialog.addEventListener("submit", event => {
     event.preventDefault();
-    const userBook = addBookToLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.value);
+    const bookRead = bookDialog.querySelector("input[name= readStatus]:checked").value;
+    const userBook = addBookToLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookRead);
     displayBookToLibrary(userBook);
     bookDialog.close();
     console.log('Book added to your library.')
