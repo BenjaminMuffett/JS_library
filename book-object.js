@@ -35,7 +35,19 @@ function displayBookToLibrary() {
         text.textContent = newDisplayBook[key];
         entry.appendChild(text);
     }
+    let libraryIndex = myLibrary.length - 1
+    const delButton = document.createElement('button');
+    delButton.setAttribute('id', libraryIndex);
+    delButton.classList.add('delBtn');
+    delButton.textContent = "Delete Entry";
+    entry.appendChild(delButton);
+    delButton.addEventListener('click', e => {
+    console.log('Firing the laser');
+    const element = e.target;
+    element.parentElement.remove();
+    });
     container.appendChild(entry);
+    
 }
 
 // link button to a dialog, get info, create book entry
@@ -70,3 +82,4 @@ bookDialog.addEventListener("submit", event => {
 closeButton.addEventListener('click', () => {
     bookDialog.close();
 })
+
