@@ -25,17 +25,21 @@ function addBookToLibrary(title, author, pages, read) {
 
 // function that loops through myLibrary and displays each book on page table/card 
 // rather than for each in the array, just append the last entry 
+
+// could be made better by separating into smaller functions, i.e array info to display, then del button, toggle
 function displayBookToLibrary() {
     const container = document.querySelector('.grid-container');
-    const newDisplayBook = myLibrary[myLibrary.length -1];
+    // const newDisplayBook = myLibrary[myLibrary.length -1];
+    let libraryIndex = myLibrary.length - 1;
     const entry = document.createElement('div');
     entry.classList.add('card');
-    for (key in newDisplayBook) {
+    entry.setAttribute('id', libraryIndex);
+    for (key in myLibrary[libraryIndex]) {
         const text = document.createElement('p');
-        text.textContent = newDisplayBook[key];
+        text.textContent = myLibrary[libraryIndex][key];
+        text.setAttribute('class', key);
         entry.appendChild(text);
     }
-    let libraryIndex = myLibrary.length - 1
     const delButton = document.createElement('button');
     delButton.setAttribute('id', libraryIndex);
     delButton.classList.add('delBtn');
@@ -45,7 +49,10 @@ function displayBookToLibrary() {
     console.log('Firing the laser');
     const element = e.target;
     element.parentElement.remove();
+    delete myLibrary[delButton.getAttribute('id')];
     });
+    toggleAppend = toggleRead();
+    entry.appendChild(toggleAppend);
     container.appendChild(entry);
     
 }
@@ -83,3 +90,17 @@ closeButton.addEventListener('click', () => {
     bookDialog.close();
 })
 
+// tomorrows starting point, how to add more to a dom element 
+
+function toggleRead() {
+    const toggleBtn = document.createElement('button');
+    toggleBtn.classList.add('toggle');
+    toggleBtn.textContent = "Reading Status";
+    toggleBtn.addEventListener('click', event => {
+        const element = event.target;
+        console.log(element.parentElement);
+        const testVal = element.parentElement.querySelector('.read');
+        console.log(testVal);
+    })
+    return toggleBtn
+}
