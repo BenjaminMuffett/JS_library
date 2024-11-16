@@ -98,9 +98,19 @@ function toggleRead() {
     toggleBtn.textContent = "Reading Status";
     toggleBtn.addEventListener('click', event => {
         const element = event.target;
-        console.log(element.parentElement);
-        const testVal = element.parentElement.querySelector('.read');
-        console.log(testVal);
+        // console.log(element.parentElement);
+        const testVal = element.parentElement.querySelector('.read').textContent;
+        // console.log(testVal);
+        if (testVal == 'Read') {
+            element.parentElement.querySelector('.read').textContent = 'Not Read';
+            myLibrary[element.parentElement.getAttribute('id')].read = 'Not Read';
+            console.log(myLibrary[element.parentElement.getAttribute('id')].read);
+        }
+        if (testVal == 'Not Read') {
+            element.parentElement.querySelector('.read').textContent = 'Read';
+            myLibrary[element.parentElement.getAttribute('id')].read = 'Read';
+            console.log(myLibrary[element.parentElement.getAttribute('id')].read);
+        }
     })
     return toggleBtn
 }
